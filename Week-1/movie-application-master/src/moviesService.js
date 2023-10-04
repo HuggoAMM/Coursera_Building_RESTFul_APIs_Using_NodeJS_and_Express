@@ -2,10 +2,14 @@
 const axios = require("axios");
 
 const getMovies = (done) => {
-  axios.get("http://localhost:3000/movies/").then((response) => {
-    console.log(response.data);
-    return response.data;
-  });
+  axios
+    .get("http://localhost:3000/movies/")
+    .then((response) => {
+      return done(null, JSON.stringify(response.data));
+    })
+    .catch((err) => {
+      return done(JSON.stringify(err.message));
+    });
 };
 
 const getMoviesById = (movieId, done) => {
@@ -22,7 +26,7 @@ const updateMovie = function (movieId, updateData, done) {
 
 const deleteMovieById = async function (movieId, done) {
   try {
-    const response = await axios.delete("http://localhost:3000/movies/${id}");
+    const response = await axios.delete("http://localhost:3000/movies/${}");
     return response.data;
   } catch (error) {
     throw error;
