@@ -23,8 +23,7 @@ describe("Testing the routes", () => {
       .get("/oauth/callback")
       .expect(401)
       .end((err, res) => {
-        console.log("error =>", err);
-        // expect(err).to.be.equal(null);
+        expect(err).to.be.equal(null);
         // expect(err).to.equal(null);
         // expect(res.body).to.be.an("object");
         // expect(res.body.STATUS).to.equal("OK");
