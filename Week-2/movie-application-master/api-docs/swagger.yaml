@@ -1,0 +1,91 @@
+swagger: "2.0"
+info:
+  description: "UER API"
+  version: "1.0.0"
+  title: "User API"
+host: "localhost:4000"
+basePath: "/api/v1/movies"
+tags:
+  - name: "User Details"
+    description: "Details of Users of an application"
+schemes:
+  - "http"
+paths:
+  /users:
+    get:
+      tags:
+        - "All users"
+      summary: "Retrieve all users"
+      security: []
+      responses:
+        "200":
+          description: "successful operation"
+    post:
+      tags:
+        - "Create new user"
+      summary: "Create new user"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+  /users/{id}:
+    get:
+      tags:
+        - "Get specific user "
+      summary: "Retieve a specific user"
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          type: integer
+          format: inte64
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid id"
+        "404":
+          description: "User not found"
+    delete:
+      tags:
+        - "Delete a specific user"
+      description: "Delete a user with the specific id in path"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Id of user to be deleted"
+          required: true
+          type: integer
+          format: inte64
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid id"
+        "404":
+          description: "User not found"
+    put:
+      tags:
+        - "Update a specific user"
+      description: "Update values od a particular user based on id"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User object that needs to be update to the list"
+          required: true
+          schema:
+            type: "string"
+        - name: "id"
+          in: "path"
+          description: "Id of user to be updated"
+          required: true
+          type: integer
+          format: inte64
+      responses:
+        "201":
+          description: "Successful operation"

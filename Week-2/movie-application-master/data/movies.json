@@ -7,12 +7,6 @@
       "rating": "9.6"
     },
     {
-      "id": 2,
-      "movieName": "The Guard",
-      "director": "John Michael McDonagh",
-      "rating": "9.4"
-    },
-    {
       "id": 3,
       "movieName": "E.T",
       "director": "Steven Spielberg",
@@ -41,6 +35,24 @@
       "director": "Franklin",
       "rating": "10",
       "id": 7
+    },
+    {
+      "id": 8,
+      "movieName": "The Guard",
+      "director": "John Michael McDonagh",
+      "rating": "9.4"
+    },
+    {
+      "id": 9,
+      "movieName": "The Guard",
+      "director": "John Michael McDonagh",
+      "rating": "9.4"
+    },
+    {
+      "id": 10,
+      "movieName": "The Guard",
+      "director": "John Michael McDonagh",
+      "rating": "9.4"
     }
   ]
 }

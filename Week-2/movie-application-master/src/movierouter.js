@@ -1,5 +1,8 @@
+//import all the modules required
+const express = require("express");
+const router = express.Router();
 
-//import all the modules required 
+const movieController = require("./moviecontroller");
 
 /**
  * API to get the details of all movies
@@ -7,12 +10,16 @@
  */
 router.get("/", (req, res) => {
   try {
-    //calling controller method and passing the parameters 
-    //return the response as per error or result coming from controller
+    //calling controller method and passing the parameters
+    //return the res as per error or result coming from controller
     movieController.getMovies((err, results) => {
-    })
+      if (err) {
+        return res.status(400).send(err);
+      }
+      return res.status(200).send({ status: "OK", data: JSON.parse(results) });
+    });
   } catch (err) {
-   
+    return res.status(500).send("Try after sometime");
   }
 });
 /**
@@ -23,16 +30,18 @@ router.get("/", (req, res) => {
 router.get("/:movieId", (req, res) => {
   try {
     //retreive moviedId from req.params
-  
+    const movieId = req.params.movieId;
 
-    //calling controller method and passing the parameters 
-    //return the response as per error or result coming from controller
+    //calling controller method and passing the parameters
+    //return the res as per error or result coming from controller
     movieController.getMovieById(movieId, (err, results) => {
-     
+      if (err) {
+        return res.status(400).send(err);
+      }
+      return res.status(200).send({ status: "OK", data: JSON.parse(results) });
     });
-
   } catch (err) {
-    
+    return res.status(500).send("Try after sometime");
   }
 });
 
@@ -43,17 +52,17 @@ router.get("/:movieId", (req, res) => {
 router.post("/", (req, res) => {
   try {
     //retreive movieDetails from req.body
-    const movieDetails = {
-      
-    }
-     //calling controller method and passing the parameters 
-    //return the response as per error or result coming from controller
+    const movieDetails = req.body;
+    //calling controller method and passing the parameters
+    //return the res as per error or result coming from controller
     movieController.saveMovieDetails(movieDetails, (err, results) => {
-     
+      if (err) {
+        return res.status(400).send(err);
+      }
+      return res.status(201).send({ STATUS: "OK", data: JSON.parse(results) });
     });
-
   } catch (err) {
-   
+    return res.status(400).send("Try after sometime");
   }
 });
 
@@ -63,20 +72,26 @@ router.post("/", (req, res) => {
  */
 router.patch("/:movieId", (req, res) => {
   try {
-     //retreive moviedId from req.params
-    
-    //retreive movieDetails from req.body
-    const movieDetails = {
-     
-    }
-    //calling controller method and passing the parameters 
-    //return the response as per error or result coming from controller
-    movieController.updateMovieDetails(movieId, movieDetails, (err, results) => {
-    
-    });
+    //retreive moviedId from req.params
+    const movieId = req.params.movieId;
 
+    //retreive movieDetails from req.body
+    const movieDetails = req.body;
+
+    //calling controller method and passing the parameters
+    //return the res as per error or result coming from controller
+    movieController.updateMovieDetails(
+      movieId,
+      movieDetails,
+      (err, results) => {
+        if (err) {
+          return res.status(400).send(err);
+        }
+        return res.status(200).send({ STATUS: "OK", data: results });
+      }
+    );
   } catch (err) {
-   
+    return res.status(500).send("Try after sometime");
   }
 });
 
@@ -86,16 +101,19 @@ router.patch("/:movieId", (req, res) => {
  */
 router.delete("/:movieId", (req, res) => {
   try {
-     //retreive moviedId from req.params
-   
-       //calling controller method and passing the parameters 
-      //return the response as per error or result coming from controller
+    //retreive moviedId from req.params
+    const movieId = req.params.movieId;
+
+    //calling controller method and passing the parameters
+    //return the res as per error or result coming from controller
     movieController.deleteMovieById(movieId, (err, results) => {
-    })
-     
-
+      if (err) {
+        return res.status(400).send(err);
+      }
+      return res.status(200).send({ STATUS: "OK", data: results });
+    });
   } catch (err) {
-
+    return res.status(500).send("Try after sometime");
   }
 });
 
