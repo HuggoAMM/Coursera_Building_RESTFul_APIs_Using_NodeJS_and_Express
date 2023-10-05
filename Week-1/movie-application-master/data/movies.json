@@ -2,9 +2,9 @@
   "movies": [
     {
       "id": 1,
-      "movieName": "True Grit",
-      "director": "Joel and Ethan Coen",
-      "rating": "9.6"
+      "movieName": "The Guard_test",
+      "director": "John Michael McDonagh",
+      "rating": "9.4"
     },
     {
       "id": 3,

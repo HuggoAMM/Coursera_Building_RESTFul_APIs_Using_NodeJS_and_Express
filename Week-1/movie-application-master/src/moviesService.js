@@ -2,6 +2,7 @@
 const axios = require("axios");
 
 const getMovies = (done) => {
+  // get all movies
   axios
     .get("http://localhost:3000/movies/")
     .then((response) => {
@@ -14,23 +15,50 @@ const getMovies = (done) => {
 
 const getMoviesById = (movieId, done) => {
   // get movie by id
+  axios
+    .get(`http://localhost:3000/movies/${movieId}`)
+    .then((response) => {
+      return done(null, JSON.stringify(response.data));
+    })
+    .catch((err) => {
+      return done(JSON.stringify(err.message));
+    });
 };
 
 const saveMovie = function (newMovie, done) {
   // save the details of a movie read from the request body
+  axios
+    .post("http://localhost:3000/movies/", newMovie)
+    .then((response) => {
+      return done(null, JSON.stringify(response.data));
+    })
+    .catch((err) => {
+      return done(JSON.stringify(err.message));
+    });
 };
 
 const updateMovie = function (movieId, updateData, done) {
   // update movie details of a specific movie
+  axios
+    .put(`http://localhost:3000/movies/${movieId}`, updateData)
+    .then((response) => {
+      return done(null, JSON.stringify(response.data));
+    })
+    .catch((err) => {
+      return done(JSON.stringify(err.message));
+    });
 };
 
-const deleteMovieById = async function (movieId, done) {
-  try {
-    const response = await axios.delete("http://localhost:3000/movies/${}");
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+const deleteMovieById = function (movieId, done) {
+  // delete a specific movie
+  axios
+    .delete(`http://localhost:3000/movies/${movieId}`)
+    .then((response) => {
+      return done(null, JSON.stringify(response.data));
+    })
+    .catch((err) => {
+      return done(JSON.stringify(err.message));
+    });
 };
 
 module.exports = {
